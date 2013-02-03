@@ -1,7 +1,6 @@
 
-
-class M_M_1 
-	def initialize( mu, lambda, trials )
+class Simulation 
+	def initialize( lambda, mu, trials )
 
 		# Set inter-arrival time constant
 		@LAMBDA = lambda
@@ -10,7 +9,7 @@ class M_M_1
 		@MU = mu
 
 		# Start the time, number in queue, count, and L integral to zero 
-		@time, @l, @count, @accum =0
+		@time, @l, @count, @accum = 0, 0, 0, 0
 
 
 
@@ -22,17 +21,16 @@ class M_M_1
 
 		# Nobody in queue, so next departure is nil
 		@next_departure = nil
+		
 
-	
-
-		while ( @count < @trials )
+		while ( @count < @TRIALS && @l > 0 )
 			if ( @next_arrival < @next_departure  || @next_departure.nil?)
 				process_arrival
 			else
 				process_departure
 			end
 		end
-
+		self.stats
 
 	end
 
@@ -41,6 +39,8 @@ class M_M_1
 	end
 
 	def process_arrival
+		@count +=1 
+
 		# First increase the integral
 		@accum += @l * ( @next_arrival - @time )
 		
@@ -76,16 +76,17 @@ class M_M_1
 	def stats
 		# Displays statistics on the simulation
 		puts " M/M/1 Simulation Summary"
-		puts "Inter-arrival time: #{@LAMDA}"
+		puts "Inter-arrival time: #{@LAMBDA}"
 		puts "Service time: #{@MU}"
 
-		rho = @lambda / @mu
+		rho = @LAMBDA.to_f / @MU.to_f
 
 		puts "Traffic intensity: #{rho}"
-
 		
 
 	end
 
 end
+
+tiny = Simulation.new(15,12,10)
 
