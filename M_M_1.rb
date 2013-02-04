@@ -1,4 +1,6 @@
 
+
+
 class MM1_Simulation 
 	def initialize( arrival_time, departure_time, trials )
 
@@ -17,7 +19,7 @@ class MM1_Simulation
 		@TRIALS = trials
 
 		# Get the first arrival time
-		@next_arrival= get_interarrival_time
+		@next_arrival= self.get_interarrival_time
 
 		# Nobody in queue, so next departure is nil
 		@next_departure = nil
@@ -28,7 +30,7 @@ class MM1_Simulation
 
 	def run 
 		while ( @count < @TRIALS )
-			# puts "#{ @count}, #{@time},  #{@next_arrival}"
+			# puts "#{@time}, #{@accum}"
 
 			if ( @next_departure.nil? || @next_arrival < @next_departure )
 				self.process_arrival
@@ -63,10 +65,10 @@ class MM1_Simulation
 		@time = @next_arrival
 
 		# Generate the next arrival time
-		@next_arrival = @time + get_interarrival_time
+		@next_arrival = @time + self.get_interarrival_time
 
 		if @l>0
-			@next_departure = @time + get_service_time
+			@next_departure = @time + self.get_service_time
 		end
 
 	end
@@ -77,7 +79,7 @@ class MM1_Simulation
 	end
 
 	def process_departure
-		@accum += @l * ( @next_arrival - @time )
+		@accum += @l * ( @next_departure - @time )
 
 		@l -= 1
 
@@ -95,23 +97,43 @@ class MM1_Simulation
 	def stats
 		# Displays statistics on the simulation
 		puts "M/M/1 Simulation Summary"
-		puts "Iterations: #{@count}"
-		puts "Arrival Rate: #{@LAMBDA}"
-		puts "Max Service Rate: #{@MU}"
+		puts "Number Served: #{@count}"
 
 		rho = @LAMBDA.to_f / @MU.to_f
-
-		puts "Traffic intensity: #{rho}"
-
-		puts "Average number in system: #{@accum.to_f/@time.to_f}"
+		l_theoretical = rho.to_f / ( 1 - rho)
 
 
-		
+		puts ""
 
+		avg_time_in_system = @time / @TRIALS
+
+		puts "Theoretical Time in System: #{ rho/(@MU-@LAMBDA) }"
+		puts "Average time in the system: #{ avg_time_in_system  }"
+		puts ""
+
+		avg_queue_length = @accum.to_f / @time 
+
+
+		puts "Theoretical Average Queue Length: #{ l_theoretical } "
+		puts "Average Queue Length: #{ avg_queue_length }"
+
+		puts ""
+
+
+		puts "Theoretical Throughput: #{rho}"
+		puts "Actual Throughput via Little's Law: #{ avg_queue_length.to_f/avg_time_in_system} "
+		puts ""
+		puts ""
 	end
-
 end
 
+# a = MM1_Simulation.new(15,12,10).run
+# b = MM1_Simulation.new(15,12,100).run
+# c = MM1_Simulation.new(15,12,1000).run
+d = MM1_Simulation.new(15,12,10000).run
+# e = MM1_Simulation.new(15,12,1000).run
 
-tiny = MM1_Simulation.new(15,12,1000).run
+
+
+
 
