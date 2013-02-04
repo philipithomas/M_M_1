@@ -122,7 +122,7 @@ class MM1_Simulation
 
 
 		puts "Theoretical Throughput: #{rho}"
-		puts "Actual Throughput via Little's Law: #{ avg_time_in_system / avg_queue_length.to_f} "
+		puts "Actual Throughput via Little's Law: #{ avg_queue_length.to_f/l_theoretical} "
 		puts ""
 		puts ""
 	end
