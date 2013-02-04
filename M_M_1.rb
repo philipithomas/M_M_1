@@ -30,7 +30,7 @@ class MM1_Simulation
 
 	def run 
 		while ( @count < @TRIALS )
-			# puts "#{@time}, #{@accum}"
+			 puts "#{@time}, #{@accum}"
 
 			if ( @next_departure.nil? || @next_arrival < @next_departure )
 				self.process_arrival
