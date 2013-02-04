@@ -30,7 +30,6 @@ class MM1_Simulation
 
 	def run 
 		while ( @count < @TRIALS )
-			 puts "#{@time}, #{@accum}"
 
 			if ( @next_departure.nil? || @next_arrival < @next_departure )
 				self.process_arrival
@@ -105,13 +104,15 @@ class MM1_Simulation
 
 		puts ""
 
-		avg_time_in_system = @time / @TRIALS
 
-		puts "Theoretical Time in System: #{ rho/(@MU-@LAMBDA) }"
+		avg_queue_length = @accum.to_f / @time 
+		avg_time_in_system = @time / @TRIALS * avg_queue_length
+
+
+		puts "Theoretical Time in System: #{ 1/(@MU - @LAMBDA) }"
 		puts "Average time in the system: #{ avg_time_in_system  }"
 		puts ""
 
-		avg_queue_length = @accum.to_f / @time 
 
 
 		puts "Theoretical Average Queue Length: #{ l_theoretical } "
@@ -121,7 +122,7 @@ class MM1_Simulation
 
 
 		puts "Theoretical Throughput: #{rho}"
-		puts "Actual Throughput via Little's Law: #{ avg_queue_length.to_f/avg_time_in_system} "
+		puts "Actual Throughput via Little's Law: #{ avg_time_in_system / avg_queue_length.to_f} "
 		puts ""
 		puts ""
 	end
@@ -130,7 +131,7 @@ end
 # a = MM1_Simulation.new(15,12,10).run
 # b = MM1_Simulation.new(15,12,100).run
 # c = MM1_Simulation.new(15,12,1000).run
-d = MM1_Simulation.new(15,12,10000).run
+d = MM1_Simulation.new(15,12,1000000).run
 # e = MM1_Simulation.new(15,12,1000).run
 
 
