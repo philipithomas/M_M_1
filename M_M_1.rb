@@ -102,7 +102,6 @@ class MM1_Simulation
 		l_theoretical = rho.to_f / ( 1 - rho)
 
 
-		puts ""
 
 
 		avg_queue_length = @accum.to_f / @time 
@@ -122,16 +121,16 @@ class MM1_Simulation
 
 
 		puts "Theoretical Throughput: #{rho}"
-		puts "Actual Throughput via Little's Law: #{ avg_queue_length.to_f/l_theoretical} "
+		puts "Actual Throughput : #{ 1 -  (1 -  @time  / @accum.to_f) / @accum.to_f * @time } "
 		puts ""
 		puts ""
 	end
 end
 
-# a = MM1_Simulation.new(15,12,10).run
-# b = MM1_Simulation.new(15,12,100).run
-# c = MM1_Simulation.new(15,12,1000).run
-d = MM1_Simulation.new(15,12,1000000).run
+a = MM1_Simulation.new(15,12,10).run
+b = MM1_Simulation.new(15,12,100).run
+c = MM1_Simulation.new(15,12,1000).run
+d = MM1_Simulation.new(15,12,10000).run
 # e = MM1_Simulation.new(15,12,1000).run
 
 

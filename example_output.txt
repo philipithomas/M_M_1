@@ -1,0 +1,48 @@
+M/M/1 Simulation Summary
+Number Served: 10
+Theoretical Time in System: 60.000000000000014
+Average time in the system: 10.048557839770499
+
+Theoretical Average Queue Length: 4.000000000000001 
+Average Queue Length: 0.5192663303695425
+
+Theoretical Throughput: 0.8
+Actual Throughput : 2.7828886214440605 
+
+
+M/M/1 Simulation Summary
+Number Served: 100
+Theoretical Time in System: 60.000000000000014
+Average time in the system: 25.6985689680177
+
+Theoretical Average Queue Length: 4.000000000000001 
+Average Queue Length: 1.4572070518610931
+
+Theoretical Throughput: 0.8
+Actual Throughput : 0.7846869307807632 
+
+
+M/M/1 Simulation Summary
+Number Served: 1000
+Theoretical Time in System: 60.000000000000014
+Average time in the system: 87.70128248883157
+
+Theoretical Average Queue Length: 4.000000000000001 
+Average Queue Length: 6.078626757333212
+
+Theoretical Throughput: 0.8
+Actual Throughput : 0.8625529758036562 
+
+
+M/M/1 Simulation Summary
+Number Served: 10000
+Theoretical Time in System: 60.000000000000014
+Average time in the system: 53.37786317076356
+
+Theoretical Average Queue Length: 4.000000000000001 
+Average Queue Length: 3.5297113321410647
+
+Theoretical Throughput: 0.8
+Actual Throughput : 0.7969548652017064 
+
+
